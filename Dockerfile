@@ -16,10 +16,10 @@ RUN curl -s ${LINK} --output ${FILE} && \
     unzip /${FILE} -d /terraria-tmp && \
     mv */${VERSION}/Linux/* /terraria-server && \
     rm ${FILE} && \
+    chmod +x ./run.sh && \
     cd /terraria-server && \
     chmod +x /terraria-server/TerrariaServer && \
     chmod +x /terraria-server/TerrariaServer.bin.x86_64 && \
-    chmod +x ./run.sh && \
     rm -R /terraria-tmp && \
     rm /terraria-server/System* && \
     rm /terraria-server/Mono* && \

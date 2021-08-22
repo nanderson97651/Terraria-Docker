@@ -10,6 +10,7 @@ RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposi
 ARG VERSION="1423"
 ENV LINK=https://terraria.org/api/download/pc-dedicated-server/terraria-server-${VERSION}.zip
 ENV FILE=terraria-server-${VERSION}.zip
+COPY run-server.sh ./run.sh
 
 RUN curl -s ${LINK} --output ${FILE} && \
     unzip /${FILE} -d /terraria-tmp && \
@@ -18,6 +19,7 @@ RUN curl -s ${LINK} --output ${FILE} && \
     cd /terraria-server && \
     chmod +x /terraria-server/TerrariaServer && \
     chmod +x /terraria-server/TerrariaServer.bin.x86_64 && \
+    chmod +x ./run.sh && \
     rm -R /terraria-tmp && \
     rm /terraria-server/System* && \
     rm /terraria-server/Mono* && \
@@ -26,7 +28,6 @@ RUN curl -s ${LINK} --output ${FILE} && \
 
 EXPOSE 7777/tcp
 
-COPY run-server.sh ./run.sh
 VOLUME [ "/config", "/worlds" ]
 
 ENTRYPOINT [ "./run.sh" ]

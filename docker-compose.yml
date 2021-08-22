@@ -1,8 +1,17 @@
 version: '3.4'
 
 services:
-  terrariadocker:
-    image: terraria-server
-    build:
+  terraria:
+    container_name: terraria-server
+    build: https://github.com/nanderson97651/Terraria-Docker
       context: .
       dockerfile: ./Dockerfile
+    ports:
+      - "7777:7777/tcp"
+    tty: true         #docker run -t
+    stdin_open: true  #docker run -i
+    volumes:
+      - "~/terraria/worlds:/worlds"
+      - "~/terraria/config:/config"
+    restart: unless-stopped
+

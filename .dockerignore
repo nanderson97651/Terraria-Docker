@@ -1,3 +1,4 @@
+#docker ignore the following files
 **/.classpath
 **/.dockerignore
 **/.env
@@ -23,3 +24,5 @@
 **/secrets.dev.yaml
 **/values.dev.yaml
 README.md
+serverconfig*
+dev/**

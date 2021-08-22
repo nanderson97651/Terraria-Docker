@@ -14,11 +14,11 @@ ENV FILE=terraria-server-${VERSION}.zip
 RUN curl -s ${LINK} --output ${FILE} && \
     unzip /${FILE} -d /terraria-tmp && \
     mv */${VERSION}/Linux/* /terraria-server && \
+    rm ${FILE} && \
     cd /terraria-server && \
     chmod +x /terraria-server/TerrariaServer && \
     chmod +x /terraria-server/TerrariaServer.bin.x86_64 && \
     rm -R /terraria-tmp && \
-    rm ${FILE} && \
     rm /terraria-server/System* && \
     rm /terraria-server/Mono* && \
     rm /terraria-server/monoconfig && \

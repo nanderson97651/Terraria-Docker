@@ -38,6 +38,12 @@ services:
       - "~/terraria/config:/config"
     restart: unless-stopped
 ```
+## 32-bit Errors
+Alpine 3.13 introduced changes that impacted compatibility of Alpine with 32 bit systems, including the RPi4.  This is corrected with an updated version of `libseccomp2` that has not been pulled into Raspberry Pi OS yet (as of Kernal 5.10).  In order to correct this error, update to a more recent version of `libseccomp2` using the following commands.
+```
+wget http://ftp.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.5.1-1_armhf.deb
+sudo dpkg -i libseccomp2_2.5.1-1_armhf.deb
+```
 ## TODO
 Add [graceful shutdown](https://github.com/chrisjoj/terraria/commit/4b69568842afb262d30cca09e71784614820ac40)
 ### Credit

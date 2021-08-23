@@ -2,9 +2,8 @@ FROM alpine
 
 LABEL Name=terrariaserver Version=1.4.2.3 Maintainer="nanderson97"
 
-RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-    apk update && \
-    apk add mono unzip curl && \
+RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+    apk --update-cache add mono unzip curl && \
     mkdir /terraria-tmp && \
     mkdir /terraria-server
 

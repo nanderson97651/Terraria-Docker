@@ -7,7 +7,7 @@ This image is designed to be used with a `serverconfig` file configured to look 
 ```
 #All paths are relative to run.sh (/root)
 #Load a world and automatically start the server
-world=worlds/YOUR_WORLD_HERE
+world=worlds/YOUR_WORLD_HERE.wld
 
 #Creates a new world if none is found. World size is specified by: 1(small), 2(medium), and 3(large).
 autocreate=2
@@ -16,27 +16,21 @@ autocreate=2
 difficulty=0
 
 #Sets the name of the world when using autocreate
-worldname=worlds/YOUR_AUTOCREATED_WORLD_HERE
+worldname=worlds/YOUR_AUTOCREATED_WORLD_HERE.wld
 
 #Sets the folder where world files will be stored
 worldpath=/worlds
 ```
-
+## Creating image
+To create your docker image, download `Dockerfile` and `run-server.sh` from this repository and build from your local directory with `docker build . -t NAME_YOUR_IMAGE`.  Or you can point directly to this repository with `docker build https://github.com/nanderson97651/Terraria-Docker -t NAME_YOUR_IMAGE`.
 ## Starting contianer
-The container can be started using docker compose.  Be sure to expose host port `7777` and map the `/worlds` and `/config` folders to your desired location on the host.  `/config` should hold a valid `serverconfig` file and all worlds will be saved in `/worlds`.
+The container can be started using `docker run`.  Be sure to expose host port `7777` and map the `/worlds` and `/config` folders to your desired location on the host.  `/config` should hold a valid `serverconfig` file and all worlds will be saved in `/worlds`.
 ```
-services:
-  terraria:
-    container_name: terraria-server
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    ports:
-      - "7777:7777/tcp"
-    volumes:
-      - "~/terraria/worlds:/worlds"
-      - "~/terraria/config:/config"
-    restart: unless-stopped
+docker run -it -p 7777:7777 \
+-v ~/YOUR_TERRARIA_DIRECTORY/worlds:/worlds \
+-v ~/YOUR_TERRARIA_DIRECTORY/config:/config \
+--name Terraria_Server \
+YOUR_DOCKER_IMAGE
 ```
 ## 32-bit Errors
 Alpine 3.13 introduced changes that impacted compatibility of Alpine with 32 bit systems, including the RPi4.  This is corrected with an updated version of `libseccomp2` that has not been pulled into Raspberry Pi OS yet (as of Kernal 5.10).  In order to correct this error, update to a more recent version of `libseccomp2` using the following commands.

@@ -22,7 +22,7 @@ worldname=worlds/YOUR_AUTOCREATED_WORLD_HERE.wld
 worldpath=/worlds
 ```
 ## Creating image
-To create your docker image, download `Dockerfile` and `run-server.sh` from this repository and build from your local directory with `docker build . -t NAME_YOUR_IMAGE`.  Or you can point directly to this repository with `docker build https://github.com/nanderson97651/Terraria-Docker -t NAME_YOUR_IMAGE`.
+To create your docker image, download `Dockerfile` and `run-server.sh` from this repository and build from your local directory with `docker build . -t NAME_YOUR_IMAGE`.  Or you can point directly to this repository with `docker build https://github.com/nanderson97651/Terraria-Docker.git -t NAME_YOUR_IMAGE`.
 ## Starting contianer
 The container can be started using `docker run`.  Be sure to expose host port `7777` and map the `/worlds` and `/config` folders to your desired location on the host.  `/config` should hold a valid `serverconfig` file and all worlds will be saved in `/worlds`.
 ```

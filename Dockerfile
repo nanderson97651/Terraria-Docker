@@ -7,7 +7,7 @@ RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/a
     mkdir /terraria-tmp && \
     mkdir /terraria-server
 
-ARG VERSION="144"
+ARG VERSION="1441"
 ENV LINK=https://terraria.org/api/download/pc-dedicated-server/terraria-server-${VERSION}.zip
 ENV FILE=terraria-server-${VERSION}.zip
 COPY run-server.sh ./run.sh

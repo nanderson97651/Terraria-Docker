@@ -1,13 +1,13 @@
 FROM alpine
 
-LABEL Name=terrariaserver Version=1.4.4.8 Maintainer="nanderson97"
+LABEL Name=terrariaserver Version=1.4.4.8.1 Maintainer="nanderson97"
 
 RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
     apk --update-cache add mono@testing unzip curl && \
     mkdir /terraria-tmp && \
     mkdir /terraria-server
 
-ARG VERSION="1448"
+ARG VERSION="14481"
 ENV LINK=https://terraria.org/api/download/pc-dedicated-server/terraria-server-${VERSION}.zip
 ENV FILE=terraria-server-${VERSION}.zip
 COPY run-server.sh ./run.sh
